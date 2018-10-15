@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="http://cdn.syncfusion.com/16.3.0.21/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+       <script src="../scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+      <!--<![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src="http://cdn.syncfusion.com/js/assets/external/jquery-3.0.0.min.js" type="text/javascript"></script>
+    <!--<![endif]-->
+    <script src="http://cdn.syncfusion.com/16.3.0.21/js/web/ej.web.all.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="content-container-fluid">
+        <div class="row">
+            <div class="cols-sample-area"  style=" width:100%">
+                <div id="PivotGrid" style="height: 300px; width: 100%;overflow:auto;" >
+                </div>
+                <script type="text/javascript">
+                    var pivotData = [
+                    { Amount: 100, Country: "Canada", Date: "FY 2005", Product: "Bike", Quantity: 2, State: "Alberta" },
+                    { Amount: 200, Country: "Canada", Date: "FY 2006", Product: "Van", Quantity: 3, State: "British Columbia" },
+                    { Amount: 300, Country: "Canada", Date: "FY 2007", Product: "Car", Quantity: 4, State: "Brunswick" },
+                    { Amount: 150, Country: "Germany", Date: "FY 2008", Product: "Bike", Quantity: 3, State: "Manitoba" },
+                    { Amount: 200, Country: "Germany", Date: "FY 2006", Product: "Car", Quantity: 4, State: "Ontario" },
+                    { Amount: 100, Country: "United State", Date: "FY 2007", Product: "Van", Quantity: 1, State: "Quebec" },
+                    { Amount: 200, Country: "France", Date: "FY 2005", Product: "Bike", Quantity: 2, State: "Charente-Maritime" },
+                    ];
+                    $(function () {
+                        $("#PivotGrid").ejPivotGrid({
+                            dataSource: {
+                                data: pivotData,
+                                rows: [
+                                    {
+                                        fieldName: "Country",
+                                        fieldCaption: "Country"
+                                    }
+                                ],
+                                columns: [
+
+                                    {
+                                        fieldName: "Product",
+                                        fieldCaption: "Product"
+                                    }
+                                ],
+                                values: [
+                                    {
+                                        fieldName: "Amount",
+                                        fieldCaption: "Amount"
+                                    }
+                                ]
+                            },
+                            renderSuccess: "DragPivotGrid",
+                           
+                        });
+                       
+                    });
+                    function DragPivotGrid(args) {
+                        $('#PivotGrid').ejDraggable({
+                            helper: function (event) {
+                                return $(event.element);
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
